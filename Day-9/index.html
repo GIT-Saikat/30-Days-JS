@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-9 Dom Manipulation</title>
+</head>
+<body style="background-color: #212121;color: #fff;">
+    <!-- Task 1 -->
+    <div id="newElement">Test ELEMENT</div>
+
+    <!-- Task 2 -->
+    <div class="newClass">saikat test class</div>
+
+    <!-- Task 4 -->
+    <ul id="newList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+
+    <!-- Task 5 -->
+    <div id="element To Remove">This element will be removed</div>
+
+    <!-- Task 6 -->
+    <ul id="myList">
+        <li>Point 1</li>
+        <li>Point 2</li>
+        <li>Point 3</li>
+    </ul>
+
+    <!-- Task 7 -->
+    <img id="myImage" src="newImage.jpeg" alt="Manners-Maketh-Man">
+
+    <!-- Task 8 -->
+    <div id="myDiv" class="oldClass">This is a div</div>
+
+    <!-- Task 9 -->
+    <button id="myButton">Change Text</button>
+    <p id="myParagraph">Original text</p>
+
+    <!-- Task 10 -->
+    <div id="myBox" style="width: 100px; height: 100px; border: 2px solid black;">Hover HERE</div>
+
+</body>
+<script>
+    //Task 1
+    const element=document.getElementById("newElement");
+    element.textContent="Test NEW eleMENT";
+
+    //Task 2
+    const element1=document.querySelector(".newClass");
+    element1.style.backgroundColor="Blue";
+
+    //Task 3
+    const newDivHTML='<div>This is a new div element</div>';
+    document.body.insertAdjacentHTML('beforeend', newDivHTML);
+    // const newDiv = document.createElement('div');
+    // newDiv.innerText = 'This is a new div element PART TWO';
+    // document.querySelector('body').appendChild(newDiv);
+    //Task 4
+    const newLiHTML="<li>Item 3</li>";
+    const myList=document.getElementById('newList');
+    myList.insertAdjacentHTML('beforeend',newLiHTML);
+
+    //Task 5
+    const removEle=document.getElementById("element To Remove");
+    removEle.remove();
+
+    //Task 6
+    const list=document.getElementById('myList');
+    list.removeChild(list.lastElementChild);
+
+    //Task 7
+    const image=document.getElementById('myImage');
+    image.setAttribute('src','oldImage.jpeg');
+    
+    //Task 8
+    var div = document.getElementById('myDiv');
+    div.classList.add('newClass');
+    div.classList.remove('oldClass');
+
+    //Task 9
+    var button = document.getElementById('myButton');
+    var paragraph = document.getElementById('myParagraph');
+    button.addEventListener('click', function() {
+        paragraph.textContent = 'Text has been changed!';
+    });
+
+    //Task 10
+    var box = document.getElementById('myBox');
+    box.addEventListener('mouseover', function() { 
+        box.style.borderColor = 'red';
+    });
+    box.addEventListener('mouseout', function() {
+        box.style.borderColor = 'black';
+});
+</script>
+</html>

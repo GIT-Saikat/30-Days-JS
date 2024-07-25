@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAY 10:Event Listener</title>
+</head>
+<body style="background-color:#212121;color:#fff">
+    <!-- Task 1 -->
+    <button id="changeText">Click Here!!</button>
+    <p id="textPara">Original Text</p>
+
+    <!-- Task 2 -->
+    <p>Double Click the Image to toggle its visibility.</p>
+    <img id="toggleImage" src="Squirrel.jpg" alt="Squirel Image" style="width:200px;height: 200px;">
+
+    <!-- Task 3 -->
+    <div id="colorBox" style="width:200px; height:200px; background-color:lightgray;border:2px solid black;">
+        Hover over me!
+    </div>
+    
+    <!-- Task 5 -->
+    <input type="text" id="inputField" placeholder="Type Here">
+
+    <!-- Task 6 -->
+    <p id="displayPara">Input Value is shown Here:</p>
+
+    <!-- Task 7 -->
+    <form id="newForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Task 8 -->
+    <label for="options">Choose an Option</label>
+    <select id="options">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+        <option value="Option 4">Option 4</option>
+    </select>
+    <p id="displayPara1">Selected Value will appear here</p>
+
+    <!-- Task 9 -->
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+
+    <!-- Task 10 -->
+     <div id="parentElement">
+        <button id="addButton">Add Item</button>
+        <ul id="itemList1">
+
+        </ul>
+     </div>
+    
+</body>
+<script>
+    //Task 1
+    const para=document.getElementById('textPara');
+    document.getElementById('changeText').addEventListener('click',function(e){
+        para.textContent='Changed Text'
+    },false);
+
+    // Task 2
+    document.getElementById('toggleImage').addEventListener('dblclick',function(e){
+    const image = e.target;
+    if (image.style.display === 'none') {
+        image.style.display = 'block';
+    } else {
+        image.style.display = 'none';
+    }
+    },false);
+
+    // Task 3
+
+    // const colorBox=document.getElementById('colorBox');
+    // colorBox.addEventListener('mouseover',function(){
+    //     colorBox.style.backgroundColor='lightblue';
+    //     colorBox.style.borderColor = 'red';
+    // },false)
+    document.getElementById('colorBox').addEventListener('mouseover', function(e) {
+    e.target.style.backgroundColor = 'yellow';
+    e.target.style.borderColor='red';
+    },false);
+
+    //Task 4
+    document.getElementById('colorBox').addEventListener('mouseout',function(e){
+        e.target.style.backgroundColor='lightgray';
+        e.target.style.borderColor='black';
+    },false);
+
+    //Task 5
+    const inputField=document.getElementById('inputField');
+    inputField.addEventListener('keydown',function(e){
+        console.log('Key Pressed:',e.key);
+    },false);
+
+    //Task 6
+    const displayPara=document.getElementById('displayPara');
+    inputField.addEventListener('keyup',function(){
+        displayPara.textContent='Current input value:'+inputField.value;
+    },false);
+
+    //Task 7
+    const form=document.getElementById('newForm');
+    form.addEventListener('submit',function(e){
+        e.preventDefault();
+        const formData=new FormData(form);
+        for(let[key,value]of formData.entries()){
+            console.log(`${key}:${value}`);
+        }
+    },false);
+
+    // Task 8
+    const displayPara1=document.getElementById('displayPara1');
+    document.getElementById('options').addEventListener('change',function(e){
+        displayPara1.textContent='Selected value:'+e.target.value;
+    },false);
+
+    // const selectDropdown = document.getElementById('options');
+    // const displayPara1 = document.getElementById('displayPara1');
+    // selectDropdown.addEventListener('change', function() {
+    
+    //     const selectedValue = selectDropdown.value;
+    
+    //     displayPara1.textContent = 'Selected value: ' + selectedValue;
+    // });
+
+    //Task 9
+    document.getElementById('itemList').addEventListener('click',function(e){
+        if(e.target && e.target.nodeName==='LI'){
+            console.log('List item text:',e.target.textContent);
+        }
+    },false)
+
+    //Task 10
+    document.getElementById('parentElement').addEventListener('click',function(e){
+        if(e.target && e.target.nodeName==='LI'){
+            console.log('List item clicked:',e.target.textContent);
+        }
+    },false);
+
+    const itemList = document.getElementById('itemList');
+    document.getElementById('addButton').addEventListener('click',function(){
+        const newItem=document.createElement('li');
+        newItem.textContent='Item '+(itemList.children.length+1);
+        itemList.appendChild(newItem);
+    },false);
+</script>
+</html>
+
+
+
